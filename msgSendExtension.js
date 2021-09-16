@@ -82,13 +82,13 @@
 
             for (i = 0; i < worksheetData.columns.length; i++) {
                 if (worksheetData.columns[i].fieldName == sendData.colname) {
-                    console.log("columns에서 userid가 있는쪽 번호는", i);
+                    console.log(`${sendData.colname}의 인덱스`, i);
                     console.log(worksheetData.columns[i]);
                     break;
                 }
             }
             for (a = 0; a < worksheetData.columns.length; a++) {
-                if (worksheetData.columns[i].fieldName == sendData.valueName) {
+                if (worksheetData.columns[a].fieldName == sendData.valueName) {
                     console.log("valueName 컬럼명은", a);
                     console.log(worksheetData.columns[a]);
                     break;
