@@ -1,179 +1,211 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Quick CRM</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet" />
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+"use strict";
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-        <!-- <link rel="stylesheet" href="/tableau_extension/msgSendExtension.css"> -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        
-        <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
-        
-        <!-- Extensions Library (this will be hosted on a CDN eventually) -->
-        <!-- <script src="../../lib/tableau.extensions.1.latest.js"></script> -->
+(function () {
+    const defaultIntervalInMin = "5";
+    let activeDatasourceIdList = [];
+    const el = document.getElementById('chartArea');
+    const chartData = {
+        // == 유저 id(1명씩만 선택될 예정)
+        categories: [],
+        // 유저별 구매한 대카테명
+        series: []
+    }
+    const chartOptions = {
+        chart: {
+            title: 'testtitle',
+            width: 'auto',
+            height: 'auto'
+        },
+    };
 
-        <script src="tableau.extensions.1.latest.js"></script>
-        <script src="https://unpkg.com/tui-code-snippet@1.4.0/dist/tui-code-snippet.js"></script>
-        <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
-    </head>
-    <style>
-    body{
-        background-color: transparent;
-        font-family : "Noto Sans KR", NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, system-ui, sans-serif !important
-    }
-    .btn-outline-blue:hover {
-    color: #fff;
-    background-color: #4c628f;
-    border-color: #4c628f;
-    }
-    .btn-outline-blue {
-        color: #4c628f;
-        border-color: #4c628f;
-    }
-    .btn-blue {
-        color: #fff;
-        background-color: #4c628f;
-        border-color: #4c628f;
-    }
-    .btn-blue:hover {
-        color: #fff;
-        background-color: #192d5c;
-        border-color: #192d5c;
-    }
-    .btn-hover.color-8 {
-        background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
-        box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
-    }
-    * {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
+    $(document).ready(function () {
+        $("#configureBtn").on("click", function () {
+            configure();
+        });
+        tableau.extensions.initializeAsync({
+            configure: configure
+        }).then(function () {
+            if (tableau.extensions.settings.get("sendDataKey") != null) {
+                var sendData2 = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
 
-    .buttons {
-        margin: 10%;
-        text-align: center;
-    }
+                render(sendData2);
+            }
+        });
+    });
 
-    .btn-hover {
-        width: 200px;
-        font-size: 16px;
-        font-weight: 600;
-        color: #fff;
-        cursor: pointer;
-        margin: 20px;
-        height: 55px;
-        text-align:center;
-        border: none;
-        background-size: 300% 100%;
+    function configure() {
+        const popupUrl = `https://summerce-platform.github.io/tableau-extension-chart/msgSendDialogExtension.html`;
+        tableau.extensions.ui
+            .displayDialogAsync(popupUrl, defaultIntervalInMin, {
+                height: 730,
+                width: 470
+            })
+            .then((closePayload) => {
+                $("#inactive").hide();
+                $("#active").show();
+                console.log("활성화됨")
+                console.log("senddata", tableau.extensions.settings.get("sendDataKey"));
+                var sendData = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
 
-        border-radius: 50px;
-        moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
+                render(sendData);
+            })
+            .catch((error) => {
+                switch (error.errorCode) {
+                    case tableau.ErrorCodes.DialogClosedByUser:
+                        console.log("Dialog was closed by user");
+                        break;
+                    default:
+                        console.error(error.message);
+                }
+            });
     }
+    // function getDataAjax(arrs) {
+    //     return $.ajax({
+    //         type: "POST",
+    //         // url: `https://test.ninecube.kr/makeshop/users/idToMobile`,
+    //         url: `https://ninecube.kr/makeshop/users/idToMobile`,
+    //         contentType: "application/json",
+    //         data: JSON.stringify(arrs),
+    //     });
+    // }
+    // var receiversList;
+    var fiveArr;
 
-    .btn-hover:hover {
-        background-position: 100% 0;
-        moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
-    }
+    function render(sendData) {
+        $("#inactive").hide();
+        $("#active").show();
+        const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
+        // Find a specific worksheet
+        var worksheet = worksheets.find(function (sheet) {
+            return sheet.name === sendData.sheetname;
+        });
 
-    .btn-hover:focus {
-        outline: none;
-    }
-    #getdata{
-        /* box-shadow:rgb(0 0 0 / 14%) 0px 3px 12px 0px; */
-        /* box-shadow : #bdbdbd 2.4px 2.4px 3.2px; */
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-        background :transparent;
-    }
-    #getdata:hover{
-    /* box-shadow :rgb(0 0 0 / 34%) 0px 8px 12px 0px; */
-     box-shadow: rgba(0, 0, 0, 0.36) 0px 10px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    background-color : #fff;
-        moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
-    }
-    #couponIcon{
-        transform:rotate(-20deg);
-        moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
-    }
-    .rotating{
-        transform:rotate(0deg) !important;
-        moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
-    }
-    #couponText{
-        padding: 14px 0 14px 17px;
-        position : static;
-        display:inline;
-        /* font-size:0; */
-        color:#000;
-        background :#ffffff94;
-        left : 95px;
-        border-radius:50rem;
-         moz-transition: all .3s ease-in-out;
-        -o-transition: all .3s ease-in-out;
-        -webkit-transition: all .3s ease-in-out;
-        transition: all .3s ease-in-out;
-    }
-    /* #couponText:hover{
-        position : static;
-        background : #f5f5f5;
-         moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
-    } */
-    #couponSpan{
-        position:absolute;
-        left:112px;
-        padding : 14px ;
-        /* box-shadow : #7d7d7d 2.4px 2.4px 3.2px; */
-    }
-    </style>
-    <body>
-        <div id="mainContent">
-            <div id="active" style="display: none; height: auto;">
-                <div id="chartArea" style="width: 100%;"></div>
-                
-            </div>
-            <div id="inactive">
-                <div class="mx-auto py-5" style="max-width: 300px">
-                    <!-- <h4 class="text-white p-2" style="background-color: #696ffb;">MSG TOOL</h5> -->
-                    <p class="text-muted" style="font-size: 1.3rem">⚙ MESSAGING EXTENSION</p>
-                    <button class="btn btn-block btn-outline-danger" id="configureBtn">설정하기</button>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                </div>
-            </div>
-        </div>
+        return worksheet.getSummaryDataAsync().then(function (sumdata) {
+            const worksheetData = sumdata;
+            console.log(worksheetData);
 
-        
-        <!-- <%-- script --%> -->
 
-        <script src="./msgSendExtension.js"></script>
-        <!-- <script src="./new-dialog.js"></script> -->
 
-    </body>
-</html>
+
+            var a = 0;
+            var i = 0;
+
+            for (i = 0; i < worksheetData.columns.length; i++) {
+                if (worksheetData.columns[i].fieldName == sendData.colname) {
+                    console.log(`${sendData.colname}의 인덱스`, i);
+                    console.log(worksheetData.columns[i]);
+                    break;
+                }
+            }
+            for (a = 0; a < worksheetData.columns.length; a++) {
+                if (worksheetData.columns[a].fieldName == sendData.valueName) {
+                    console.log("valueName 컬럼명은", a);
+                    console.log(worksheetData.columns[a]);
+                    break;
+                }
+            }
+            var b = 0;
+            var k = 0;
+            fiveArr = [];
+            for (k = 0; k < worksheetData.data.length; k++) {
+                chartData.categories.push(worksheetData.data[k][i].formattedValue);
+            }
+
+            // fiveArr = new Set(fiveArr);
+            // fiveArr = [...fiveArr];
+            let _tempSeriesData = [];
+            for (b = 0; b < worksheetData.data.length; b++) {
+                _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
+            }
+            chartData.series.push({
+                name: 'sample',
+                data: _tempSeriesData
+            }, {
+                name: 'test2',
+                data: [
+                    "12",
+                    "2",
+                    "31",
+                    "34",
+                    "14",
+                    "12",
+                    "1",
+                    "17",
+                    "7",
+                    "1",
+                    "14",
+                    "1",
+                    "1",
+                    "13",
+                    "4",
+                    "2"
+                ]
+            });
+            console.log(chartData)
+            const el2 = document.getElementById('chartArea');
+            const data2 = {
+              categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+              series: [
+                {
+                  name: 'Budget',
+                  data: [5000, 3000, 5000, 7000, 6000, 4000],
+                },
+                {
+                  name: 'Income',
+                  data: [8000, 4000, 7000, 2000, 6000, 3000],
+                },
+                {
+                  name: 'Expenses',
+                  data: [4000, 4000, 6000, 3000, 4000, 5000],
+                },
+                {
+                  name: 'Debt',
+                  data: [3000, 4000, 3000, 1000, 2000, 4000],
+                },
+              ],
+            };
+            const options = {
+              chart: { title: 'Annual Incomes', width: 600, height: 600 },
+              series: { selectable: true },
+            };
+      
+            // const chart = toastui.Chart.radarChart({
+            //     el,
+            //     testdata,
+            //     chartOptions
+            // });
+
+            // $("input[name='sendingList']").val(fiveArr);
+            return new Promise((resolve, reject) => {
+                const chart = toastui.Chart.radarChart({ el2, data2, options });
+
+                resolve(fiveArr);
+            });
+            ///아이디값을 보내서 휴대폰번호를 얻는 ajax구문 작성
+
+            // console.log(fiveArr);
+            // $("#sheetname").text(JSON.stringify(fiveArr));
+            // $("#colnames").text(i + "번째");
+
+            // $("#sheetname").text(JSON.stringify(fiveArr));
+            // receiversList = [
+            //     {
+            //         phone: "010-5030-1826",
+            //         아이디: "new1",
+            //         적립금: 0,
+            //     },
+            // ];
+        });
+    }
+    $("#getdata").on("click", function () {
+        var currentData = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
+        render(currentData).then((arr) => {
+            console.log(arr);
+            let target = window.open(`https://ninecube.kr/tableau-extension/msgSendModule`, "_blank");
+            target.sendList = fiveArr;
+        });
+    });
+})();
+
+// columns에서 userid1이라는 객체만 뽑아보기
+//각각의 5번 가져오기
