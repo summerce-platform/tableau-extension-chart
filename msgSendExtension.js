@@ -12,7 +12,7 @@
     }
     const chartOptions = {
         chart: {
-            title: 'test!',
+            title: 'testtitle',
             width: 'auto',
             height: 'auto'
         },
@@ -43,7 +43,7 @@
             .then((closePayload) => {
                 $("#inactive").hide();
                 $("#active").show();
-
+                console.log("활성화됨")
                 console.log("senddata", tableau.extensions.settings.get("sendDataKey"));
                 var sendData = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
 
