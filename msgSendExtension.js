@@ -1,4 +1,5 @@
 "use strict";
+import { RadarChart } from '@toast-ui/chart';
 
 (function () {
     const defaultIntervalInMin = "5";
@@ -168,7 +169,8 @@
               chart: { title: 'Annual Incomes', width: 600, height: 600 },
               series: { selectable: true },
             };
-            const chart = toastui.Chart.radarChart({ el2, data2, options });
+
+            const chart = new RadarChart({ el2, data2, options });
 
             // const chart = toastui.Chart.radarChart({
             //     el,
