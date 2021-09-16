@@ -120,9 +120,29 @@
             chartData.series.push({
                 name: 'sample',
                 data: _tempSeriesData
+            }, {
+                name: 'test2',
+                data: [
+                    "12",
+                    "2",
+                    "31",
+                    "34",
+                    "14",
+                    "12",
+                    "1",
+                    "17",
+                    "7",
+                    "1",
+                    "14",
+                    "1",
+                    "1",
+                    "13",
+                    "4",
+                    "2"
+                ]
             });
             console.log(chartData)
-            
+
 
             const chart = toastui.Chart.radarChart({
                 el,
