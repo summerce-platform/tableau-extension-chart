@@ -168,7 +168,8 @@
               chart: { title: 'Annual Incomes', width: 600, height: 600 },
               series: { selectable: true },
             };
-      
+            const chart = toastui.Chart.radarChart({ el2, data2, options });
+
             // const chart = toastui.Chart.radarChart({
             //     el,
             //     testdata,
@@ -177,7 +178,6 @@
 
             // $("input[name='sendingList']").val(fiveArr);
             return new Promise((resolve, reject) => {
-                const chart = toastui.Chart.radarChart({ el2, data2, options });
 
                 resolve(fiveArr);
             });
