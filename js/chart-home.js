@@ -142,6 +142,7 @@
                 type: 'radar',
                 data: mydata,
                 responsive : true,
+                tooltips : false,
                 options: {
                     plugins : {
                         datalabels :{
@@ -151,13 +152,32 @@
                         },
                         legend :{
                             display : false
-                        },
-                        tooltip :{
-                            enable : false
-                        },
+                        }
                     }
                 },
-            };
+                scale : {
+                    angleLines : {
+                        display : false
+                    },
+                    pointLabels:{
+                        /* https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options */
+                        fontSize: 15,
+                        fontColor: 'black',
+                        fontStyle: 'bold',
+                        callback: function(value, index, values) {
+                          return value;
+                        }
+                      },
+                      ticks: {
+                        /* https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration */
+                        /* suggestedMax and suggestedMin settings only change the data values that are used to scale the axis */
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        stepSize: 25, /* 25 - 50 - 75 - 100 */
+                        display: false, // remove label text only,
+                      }
+                }
+                           };
             myChart = new Chart(
                 document.getElementById('chartArea'),
                 config
