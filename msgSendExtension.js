@@ -4,20 +4,9 @@
 (function () {
     const defaultIntervalInMin = "5";
     let activeDatasourceIdList = [];
-    const el = document.getElementById('chartArea');
-    const chartData = {
-        // == 유저 id(1명씩만 선택될 예정)
-        categories: [],
-        // 유저별 구매한 대카테명
-        series: []
-    }
-    const chartOptions = {
-        chart: {
-            title: 'testtitle',
-            width: 'auto',
-            height: 'auto'
-        },
-    };
+    const ctx = document.getElementById('chart');
+    var labels;
+    var mydata;
 
     $(document).ready(function () {
         $("#configureBtn").on("click", function () {
@@ -114,62 +103,37 @@
             for (b = 0; b < worksheetData.data.length; b++) {
                 _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
             }
-            chartData.series.push({
-                name: 'sample',
-                data: _tempSeriesData
-            }, {
-                name: 'test2',
-                data: [
-                    "12",
-                    "2",
-                    "31",
-                    "34",
-                    "14",
-                    "12",
-                    "1",
-                    "17",
-                    "7",
-                    "1",
-                    "14",
-                    "1",
-                    "1",
-                    "13",
-                    "4",
-                    "2"
-                ]
-            });
+
+            labels=[
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+              ];
+            mydata= {
+                labels: labels,
+                datasets: [{
+                  label: 'My First dataset',
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: [0, 10, 5, 2, 20, 30, 45],
+                }]
+              };
+              var config = {
+                type: 'line',
+                data: mydata,
+                options: {}
+              };
+            var myChart = new Chart(
+                document.getElementById('chartArea'),
+                config
+              );
             console.log(chartData)
 
             ///테스트...
 
-            const el2 = document.getElementById('chartArea');
-            const data2 = {
-              categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
-              series: [
-                {
-                  name: 'Budget',
-                  data: [5000, 3000, 5000, 7000, 6000, 4000],
-                },
-                {
-                  name: 'Income',
-                  data: [8000, 4000, 7000, 2000, 6000, 3000],
-                },
-                {
-                  name: 'Expenses',
-                  data: [4000, 4000, 6000, 3000, 4000, 5000],
-                },
-                {
-                  name: 'Debt',
-                  data: [3000, 4000, 3000, 1000, 2000, 4000],
-                },
-              ],
-            };
-            const options = {
-              chart: { title: 'Annual Incomes', width: 600, height: 600 },
-              series: { selectable: true },
-            };
-            console.log(el2,data2,options,toastui.Chart);
-            const chart = toastui.Chart.radarChart({ el2, data2, options });
             
             // const chart = toastui.Chart.radarChart({
             //     el,
