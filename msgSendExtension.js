@@ -20,12 +20,12 @@
 
                 render(sendData2);
 
-
-                tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
-                    myChart.destroy();
-                    render(sendData2);
-                });
             }
+        });
+
+        tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
+            myChart.destroy();
+            render(sendData2);
         });
     });
 
