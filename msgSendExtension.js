@@ -6,20 +6,26 @@
     const el = document.getElementById('chartArea');
     const chartData = {
         // == 유저 id(1명씩만 선택될 예정)
-        categories : [],
+        categories: [],
         // 유저별 구매한 대카테명
-        series:[]
+        series: []
     }
     const chartOptions = {
-        chart: { title: 'test!', width: 'auto', height: 'auto' },
-      };
+        chart: {
+            title: 'test!',
+            width: 'auto',
+            height: 'auto'
+        },
+    };
     var chart;
 
     $(document).ready(function () {
         $("#configureBtn").on("click", function () {
             configure();
         });
-        tableau.extensions.initializeAsync({ configure: configure }).then(function () {
+        tableau.extensions.initializeAsync({
+            configure: configure
+        }).then(function () {
             if (tableau.extensions.settings.get("sendDataKey") != null) {
                 var sendData2 = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
 
@@ -27,10 +33,14 @@
             }
         });
     });
+
     function configure() {
         const popupUrl = `https://summerce-platform.github.io/tableau-extension-chart/msgSendDialogExtension.html`;
         tableau.extensions.ui
-            .displayDialogAsync(popupUrl, defaultIntervalInMin, { height: 730, width: 470 })
+            .displayDialogAsync(popupUrl, defaultIntervalInMin, {
+                height: 730,
+                width: 470
+            })
             .then((closePayload) => {
                 $("#inactive").hide();
                 $("#active").show();
@@ -61,6 +71,7 @@
     // }
     // var receiversList;
     var fiveArr;
+
     function render(sendData) {
         $("#inactive").hide();
         $("#active").show();
@@ -100,16 +111,23 @@
             for (k = 0; k < worksheetData.data.length; k++) {
                 chartData.categories.push(worksheetData.data[k][i].formattedValue);
             }
-            
+
             // fiveArr = new Set(fiveArr);
             // fiveArr = [...fiveArr];
-
+            let _tempSeriesData =[];
             for (b = 0; b < worksheetData.data.length; b++) {
-                chartData.series.push(worksheetData.data[b][a].formattedValue);
+                _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
             }
+            chartData.series.push({
+                name: 'sample',
+                data: _tempSeriesData});
+            
 
-
-            chart = toastui.Chart.radarChart({ el, chartData, chartOptions });
+            chart = toastui.Chart.radarChart({
+                el,
+                chartData,
+                chartOptions
+            });
 
             // $("input[name='sendingList']").val(fiveArr);
             return new Promise((resolve, reject) => {
