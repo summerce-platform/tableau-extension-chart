@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Quick CRM</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet" />
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/tableau_extension/msgSendExtension.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+        
+        <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+        <!-- <script src="../../lib/tableau.extensions.1.latest.js"></script> -->
+
+        <script src="tableau.extensions.1.latest.js"></script>
+    </head>
+    <style>
+    body{
+        background-color: transparent;
+        font-family : "Noto Sans KR", NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, system-ui, sans-serif !important
+    }
+    .btn-outline-blue:hover {
+    color: #fff;
+    background-color: #4c628f;
+    border-color: #4c628f;
+    }
+    .btn-outline-blue {
+        color: #4c628f;
+        border-color: #4c628f;
+    }
+    .btn-blue {
+        color: #fff;
+        background-color: #4c628f;
+        border-color: #4c628f;
+    }
+    .btn-blue:hover {
+        color: #fff;
+        background-color: #192d5c;
+        border-color: #192d5c;
+    }
+    .btn-hover.color-8 {
+        background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+        box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+    }
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .buttons {
+        margin: 10%;
+        text-align: center;
+    }
+
+    .btn-hover {
+        width: 200px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        margin: 20px;
+        height: 55px;
+        text-align:center;
+        border: none;
+        background-size: 300% 100%;
+
+        border-radius: 50px;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+
+    .btn-hover:hover {
+        background-position: 100% 0;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+
+    .btn-hover:focus {
+        outline: none;
+    }
+    #getdata{
+        /* box-shadow:rgb(0 0 0 / 14%) 0px 3px 12px 0px; */
+        /* box-shadow : #bdbdbd 2.4px 2.4px 3.2px; */
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        background :transparent;
+    }
+    #getdata:hover{
+    /* box-shadow :rgb(0 0 0 / 34%) 0px 8px 12px 0px; */
+     box-shadow: rgba(0, 0, 0, 0.36) 0px 10px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background-color : #fff;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+    #couponIcon{
+        transform:rotate(-20deg);
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+    .rotating{
+        transform:rotate(0deg) !important;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+    #couponText{
+        padding: 14px 0 14px 17px;
+        position : static;
+        display:inline;
+        /* font-size:0; */
+        color:#000;
+        background :#ffffff94;
+        left : 95px;
+        border-radius:50rem;
+         moz-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+    }
+    /* #couponText:hover{
+        position : static;
+        background : #f5f5f5;
+         moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    } */
+    #couponSpan{
+        position:absolute;
+        left:112px;
+        padding : 14px ;
+        /* box-shadow : #7d7d7d 2.4px 2.4px 3.2px; */
+    }
+    </style>
+    <body>
+        <div id="mainContent">
+            <div id="active" style="display: none">
+                <div class="">
+                    <!-- <input type='hidden' id='sendingList' name='sendingList' value='' />
+                    <%-- <button id="getdata" class="btn btn-blue btn-block" data-toggle="tooltip" data-placement="bottom" title="페이지 내 필터링한 고객들에게 맞춤 CRM이 가능합니다">해당 고객들에게 Quick CRM</button> --%>
+                    <%-- <div class="d-flex rounded-pill" id="getdata" style="width:150px; cursor:pointer;">
+                        <span class="flex-grow-1 text-center" style="font-size:1rem; line-height:2.2; padding:13px 0 13px 7px; font-weight:bold;">쿠폰생성</span>
+                        <span class="px-3 rounded-pill" style="padding-top :18px; background: linear-gradient(90deg,#304ffe, #3d2ad5);"><i class="fas fa-ticket-alt text-white" id="couponIcon" style="font-size:25px;"></i></span>
+                    </div> --%>
+                    <div class="d-flex rounded-pill" id="getdata" style="width:150px; cursor:pointer;">
+                        <span class="flex-grow-1" id="couponText" style="font-weight:bold;">쿠폰생성</span>
+                        <span id="couponSpan" class="rounded-pill" style="background: linear-gradient(90deg,#304ffe, #3d2ad5);"><i class="fas fa-ticket-alt text-white" id="couponIcon" style="font-size:23px;"></i></span>
+                    </div> -->
+                    <div id="chartArea"></div>
+                </div>
+            </div>
+            <div id="inactive">
+                <div class="mx-auto py-5" style="max-width: 300px">
+                    <!-- <h4 class="text-white p-2" style="background-color: #696ffb;">MSG TOOL</h5> -->
+                    <p class="text-muted" style="font-size: 1.3rem">⚙ MESSAGING EXTENSION</p>
+                    <button class="btn btn-block btn-outline-danger" id="configureBtn">설정하기</button>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- <%-- script --%> -->
+
+        <script src="./msgSendExtension.js"></script>
+        <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+
+    </body>
+</html>
