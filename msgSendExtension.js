@@ -7,7 +7,7 @@
     const ctx = document.getElementById('chart');
     var labels = [];
     var mydata;
-
+    var myChart;
     $(document).ready(function () {
         $("#configureBtn").on("click", function () {
             configure();
@@ -130,7 +130,7 @@
                 data: mydata,
                 options: {}
             };
-            var myChart = new Chart(
+            myChart = new Chart(
                 document.getElementById('chartArea'),
                 config
             );
