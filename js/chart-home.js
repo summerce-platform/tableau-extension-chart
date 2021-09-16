@@ -125,6 +125,40 @@
                 _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
             }
 
+            // Change default options for ALL charts
+            Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
+                opacity: 1,
+                color: 'white',
+                borderColor: '#11469e',
+                borderWidth: 2,
+                borderRadius: 100,
+                font: {
+                weight: 'bold',
+                size: 14,
+                lineHeight: 1 /* align v center */
+                },
+                padding: {
+                top: 5
+                },
+                /* hover styling */
+                backgroundColor: function(context) {
+                return context.hovered ? context.dataset.borderColor : 'white';
+                },
+                color: function(context) {
+                return context.hovered ? 'white' : context.dataset.borderColor;
+                },
+                listeners: {
+                enter: function(context) {
+                    context.hovered = true;
+                    return true;
+                },
+                leave: function(context) {
+                    context.hovered = false;
+                    return true;
+                }
+                }
+            });
+  
             mydata = {
                 labels: labels,
                 datasets: [{
@@ -141,7 +175,7 @@
             var config = {
                 type: 'radar',
                 data: mydata,
-
+              
                 options: {
                     responsive: true,
                     tooltips: false,
@@ -151,7 +185,9 @@
                                 return context.chart.data.labels[context.value];
                             }
                         },
-                        
+                        legend : {
+                            display : false
+                        }
                     },
                     scale: {
                         angleLines: {
@@ -175,7 +211,7 @@
                             /* 25 - 50 - 75 - 100 */
                             display: false, // remove label text only,
                         }
-                    }
+                    },
                 },
 
             };
