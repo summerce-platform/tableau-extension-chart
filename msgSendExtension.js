@@ -74,11 +74,10 @@
             const worksheetData = sumdata;
             console.log(worksheetData);
 
-            chart = toastui.Chart.radarChart({ el, chartData, chartOptions });
 
 
 
-
+            var a = 0;
             var i = 0;
 
             for (i = 0; i < worksheetData.columns.length; i++) {
@@ -88,13 +87,30 @@
                     break;
                 }
             }
+            for (a = 0; a < worksheetData.columns.length; a++) {
+                if (worksheetData.columns[i].fieldName == sendData.valueName) {
+                    console.log("valueName 컬럼명은", a);
+                    console.log(worksheetData.columns[a]);
+                    break;
+                }
+            }
+            var b = 0;
             var k = 0;
             fiveArr = [];
             for (k = 0; k < worksheetData.data.length; k++) {
-                fiveArr.push(worksheetData.data[k][i].formattedValue);
+                chartData.categories.push(worksheetData.data[k][i].formattedValue);
             }
-            fiveArr = new Set(fiveArr);
-            fiveArr = [...fiveArr];
+            
+            // fiveArr = new Set(fiveArr);
+            // fiveArr = [...fiveArr];
+
+            for (b = 0; b < worksheetData.data.length; b++) {
+                chartData.series.push(worksheetData.data[b][a].formattedValue);
+            }
+
+
+            chart = toastui.Chart.radarChart({ el, chartData, chartOptions });
+
             // $("input[name='sendingList']").val(fiveArr);
             return new Promise((resolve, reject) => {
                 resolve(fiveArr);
