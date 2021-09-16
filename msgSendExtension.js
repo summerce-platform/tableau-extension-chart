@@ -93,8 +93,9 @@
             var b = 0;
             var k = 0;
             fiveArr = [];
+            let _tempCateData=[];
             for (k = 0; k < worksheetData.data.length; k++) {
-                chartData.categories.push(worksheetData.data[k][i].formattedValue);
+                _tempCateData.push(worksheetData.data[k][i].formattedValue);
             }
 
             // fiveArr = new Set(fiveArr);
