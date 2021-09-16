@@ -133,32 +133,90 @@
                 borderWidth: 2,
                 borderRadius: 100,
                 font: {
-                weight: 'bold',
-                size: 14,
-                lineHeight: 1 /* align v center */
+                    weight: 'bold',
+                    size: 14,
+                    lineHeight: 1 /* align v center */
                 },
                 padding: {
-                top: 5
+                    top: 5
                 },
                 /* hover styling */
-                backgroundColor: function(context) {
-                return context.hovered ? context.dataset.borderColor : 'white';
+                backgroundColor: function (context) {
+                    return context.hovered ? context.dataset.borderColor : 'white';
                 },
-                color: function(context) {
-                return context.hovered ? 'white' : context.dataset.borderColor;
+                color: function (context) {
+                    return context.hovered ? 'white' : context.dataset.borderColor;
                 },
                 listeners: {
-                enter: function(context) {
-                    context.hovered = true;
-                    return true;
-                },
-                leave: function(context) {
-                    context.hovered = false;
-                    return true;
-                }
+                    enter: function (context) {
+                        context.hovered = true;
+                        return true;
+                    },
+                    leave: function (context) {
+                        context.hovered = false;
+                        return true;
+                    }
                 }
             });
-  
+
+            Chart.scaleService.updateScaleDefaults('radar', {
+                ticks: {
+                    min: 0
+                }
+            });
+
+
+            var options = {
+                responsive: true,
+                tooltips: false,
+                title: {
+                  text: 'chartjs-plugin-datalabels - basic example',
+                  display: true,
+                  position: `bottom`,
+                },
+                plugins: {
+                  /* ######### https://chartjs-plugin-datalabels.netlify.com/ #########*/
+                  datalabels: {
+                    /* formatter */
+                    formatter: function(value, context) {
+                      return context.chart.data.labels[context.value];
+                    }
+                  }
+                },
+                /* scale: https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings */
+                scale: {
+                  angleLines: {
+                    display: true
+                  },
+                  pointLabels:{
+                    /* https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options */
+                    fontSize: 15,
+                    fontColor: 'black',
+                    fontStyle: 'bold',
+                    callback: function(value, index, values) {
+                      return value;
+                    }
+                  },
+                  ticks: {
+                    /* https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration */
+                    /* suggestedMax and suggestedMin settings only change the data values that are used to scale the axis */
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    stepSize: 25, /* 25 - 50 - 75 - 100 */
+                    maxTicksLimit: 11, /* Or use maximum number of ticks and gridlines to show */
+                    display: false, // remove label text only,
+                  }
+                },
+                legend: {
+                  /* https://www.chartjs.org/docs/latest/configuration/legend.html */
+                  labels: {
+                    padding: 10,
+                    fontSize: 14,
+                    lineHeight: 30,
+                  },
+                },
+              };
+
             mydata = {
                 labels: labels,
                 datasets: [{
@@ -175,45 +233,7 @@
             var config = {
                 type: 'radar',
                 data: mydata,
-              
-                options: {
-                    responsive: true,
-                    tooltips: false,
-                    plugins: {
-                        datalabels: {
-                            formatter: function (value, context) {
-                                return context.chart.data.labels[context.value];
-                            }
-                        },
-                        legend : {
-                            display : false
-                        }
-                    },
-                    scale: {
-                        angleLines: {
-                            display: false
-                        },
-                        pointLabels: {
-                            /* https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options */
-                            fontSize: 15,
-                            fontColor: 'black',
-                            fontStyle: 'bold',
-                            callback: function (value, index, values) {
-                                return value;
-                            }
-                        },
-                        ticks: {
-                            /* https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration */
-                            /* suggestedMax and suggestedMin settings only change the data values that are used to scale the axis */
-                            suggestedMin: 0,
-                            suggestedMax: 100,
-                            stepSize: 25,
-                            /* 25 - 50 - 75 - 100 */
-                            display: false, // remove label text only,
-                        }
-                    },
-                },
-
+                options: options
             };
             myChart = new Chart(
                 document.getElementById('chartArea'),
