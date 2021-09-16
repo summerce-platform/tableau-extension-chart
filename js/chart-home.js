@@ -129,55 +129,57 @@
                 labels: labels,
                 datasets: [{
                     label: 'USER',
-                    fill : true,
+                    fill: true,
                     backgroundColor: 'rgb(3, 4 ,101 ,0.3)',
                     borderColor: 'rgb(3, 4 ,101 ,0.3)',
-                    pointHoverBackgroundColor : 'rgb(122, 122, 122)',
-                    pointHoverBorderColor : '',
+                    pointHoverBackgroundColor: 'rgb(122, 122, 122)',
+                    pointHoverBorderColor: '',
                     data: _tempSeriesData,
-                    borderJoinStyle : 'round',
+                    borderJoinStyle: 'round',
                 }]
             };
             var config = {
                 type: 'radar',
                 data: mydata,
-                responsive : true,
-                tooltips : false,
+                responsive: true,
+                tooltips: false,
                 options: {
-                    plugins : {
-                        datalabels :{
-                            formatter : function(value,context){
+                    plugins: {
+                        datalabels: {
+                            formatter: function (value, context) {
                                 return context.chart.data.labels[context.value];
                             }
                         },
-                        legend :{
-                            display : false
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scale: {
+                        angleLines: {
+                            display: false
+                        },
+                        pointLabels: {
+                            /* https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options */
+                            fontSize: 15,
+                            fontColor: 'black',
+                            fontStyle: 'bold',
+                            callback: function (value, index, values) {
+                                return value;
+                            }
+                        },
+                        ticks: {
+                            /* https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration */
+                            /* suggestedMax and suggestedMin settings only change the data values that are used to scale the axis */
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            stepSize: 25,
+                            /* 25 - 50 - 75 - 100 */
+                            display: false, // remove label text only,
                         }
                     }
                 },
-                scale : {
-                    angleLines : {
-                        display : false
-                    },
-                    pointLabels:{
-                        /* https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options */
-                        fontSize: 15,
-                        fontColor: 'black',
-                        fontStyle: 'bold',
-                        callback: function(value, index, values) {
-                          return value;
-                        }
-                      },
-                      ticks: {
-                        /* https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration */
-                        /* suggestedMax and suggestedMin settings only change the data values that are used to scale the axis */
-                        suggestedMin: 0,
-                        suggestedMax: 100,
-                        stepSize: 25, /* 25 - 50 - 75 - 100 */
-                        display: false, // remove label text only,
-                      }
-                }
-                           };
+
+            };
             myChart = new Chart(
                 document.getElementById('chartArea'),
                 config
