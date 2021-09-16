@@ -123,7 +123,7 @@
                 data: _tempSeriesData
             });
             console.log(_tempSeriesData)
-            console.log(`chartData는${chartData.series}`)
+            console.log(chartData.series)
 
             chart = toastui.Chart.radarChart({
                 el,
