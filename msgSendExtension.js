@@ -84,9 +84,6 @@
             const worksheetData = sumdata;
             console.log(worksheetData);
 
-
-
-
             var a = 0;
             var i = 0;
 
@@ -142,6 +139,9 @@
                 ]
             });
             console.log(chartData)
+
+            ///테스트...
+
             const el2 = document.getElementById('chartArea');
             const data2 = {
               categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
@@ -168,7 +168,7 @@
               chart: { title: 'Annual Incomes', width: 600, height: 600 },
               series: { selectable: true },
             };
-            console.log(el2,data2,options);
+            console.log(el2,data2,options,toastui.Chart);
             const chart = toastui.Chart.radarChart({ el2, data2, options });
             
             // const chart = toastui.Chart.radarChart({
@@ -184,18 +184,7 @@
             // });
             ///아이디값을 보내서 휴대폰번호를 얻는 ajax구문 작성
 
-            // console.log(fiveArr);
-            // $("#sheetname").text(JSON.stringify(fiveArr));
-            // $("#colnames").text(i + "번째");
 
-            // $("#sheetname").text(JSON.stringify(fiveArr));
-            // receiversList = [
-            //     {
-            //         phone: "010-5030-1826",
-            //         아이디: "new1",
-            //         적립금: 0,
-            //     },
-            // ];
         });
     }
     $("#getdata").on("click", function () {
