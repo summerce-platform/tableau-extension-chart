@@ -176,15 +176,10 @@
                     // borderJoinStyle: 'round',
                 }]
             };
-            
+
             var options = {
                 responsive: true,
                 tooltips: false,
-                title: {
-                  text: 'chartjs-plugin-datalabels - basic example',
-                  display: true,
-                  position: `bottom`,
-                },
                 plugins: {
                   /* ######### https://chartjs-plugin-datalabels.netlify.com/ #########*/
                   datalabels: {
@@ -214,18 +209,10 @@
                     suggestedMin: 0,
                     suggestedMax: 100,
                     stepSize: 25, /* 25 - 50 - 75 - 100 */
-                    maxTicksLimit: 11, /* Or use maximum number of ticks and gridlines to show */
                     display: false, // remove label text only,
                   }
                 },
-                legend: {
-                  /* https://www.chartjs.org/docs/latest/configuration/legend.html */
-                  labels: {
-                    padding: 10,
-                    fontSize: 14,
-                    lineHeight: 30,
-                  },
-                },
+                legend: false
               };
 
             var config = {
