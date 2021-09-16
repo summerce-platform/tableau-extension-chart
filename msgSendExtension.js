@@ -5,7 +5,7 @@
     const defaultIntervalInMin = "5";
     let activeDatasourceIdList = [];
     const ctx = document.getElementById('chart');
-    var labels =[];
+    var labels = [];
     var mydata;
 
     $(document).ready(function () {
@@ -19,6 +19,16 @@
                 var sendData2 = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
 
                 render(sendData2);
+
+
+                tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
+                    parameters.forEach(function (p) {
+                        p.addEventListener(tableau.TableauEventType.ParameterChanged, (filterEvent) => {
+                            console.log(filterEvent)
+                            render(sendData2);
+                        });
+                    });
+                });
             }
         });
     });
@@ -93,7 +103,7 @@
             var b = 0;
             var k = 0;
             fiveArr = [];
-            let _tempCateData=[];
+            let _tempCateData = [];
             for (k = 0; k < worksheetData.data.length; k++) {
                 labels.push(worksheetData.data[k][i].formattedValue);
             }
@@ -105,28 +115,28 @@
                 _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
             }
 
-            mydata= {
+            mydata = {
                 labels: labels,
                 datasets: [{
-                  label: 'My First dataset',
-                  backgroundColor: 'rgb(255, 99, 132)',
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: _tempSeriesData,
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: _tempSeriesData,
                 }]
-              };
-              var config = {
+            };
+            var config = {
                 type: 'radar',
                 data: mydata,
                 options: {}
-              };
+            };
             var myChart = new Chart(
                 document.getElementById('chartArea'),
                 config
-              );
+            );
 
             ///테스트...
 
-            
+
             // const chart = toastui.Chart.radarChart({
             //     el,
             //     testdata,
