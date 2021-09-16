@@ -25,6 +25,7 @@
                     parameters.forEach(function (p) {
                         p.addEventListener(tableau.TableauEventType.ParameterChanged, (filterEvent) => {
                             console.log(filterEvent)
+                            myChart.detroy();
                             render(sendData2);
                         });
                     });
