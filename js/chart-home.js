@@ -42,7 +42,7 @@
     });
 
     function configure() {
-        const popupUrl = `https://summerce-platform.github.io/tableau-extension-chart/msgSendDialogExtension.html`;
+        const popupUrl = `https://summerce-platform.github.io/tableau-extension-chart/chart-dialog.html`;
         tableau.extensions.ui
             .displayDialogAsync(popupUrl, defaultIntervalInMin, {
                 height: 730,
