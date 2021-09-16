@@ -19,18 +19,16 @@
                 var sendData2 = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
 
                 render(sendData2);
-
-
-                tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
-                    parameters.forEach(function (p) {
-                        p.addEventListener(tableau.TableauEventType.ParameterChanged, (filterEvent) => {
-                            console.log(filterEvent)
-                            myChart.detroy();
-                            render(sendData2);
-                        });
-                    });
-                });
             }
+        });
+        tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
+            parameters.forEach(function (p) {
+                p.addEventListener(tableau.TableauEventType.ParameterChanged, (filterEvent) => {
+                    console.log(filterEvent)
+                    myChart.detroy();
+                    render(sendData2);
+                });
+            });
         });
     });
 
