@@ -168,6 +168,7 @@
               chart: { title: 'Annual Incomes', width: 600, height: 600 },
               series: { selectable: true },
             };
+            console.log(el2,data2,options);
             const chart = toastui.Chart.radarChart({ el2, data2, options });
             
             // const chart = toastui.Chart.radarChart({
