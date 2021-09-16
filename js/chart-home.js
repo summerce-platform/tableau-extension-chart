@@ -141,18 +141,17 @@
             var config = {
                 type: 'radar',
                 data: mydata,
-                responsive: true,
-                tooltips: false,
+
                 options: {
+                    responsive: true,
+                    tooltips: false,
                     plugins: {
                         datalabels: {
                             formatter: function (value, context) {
                                 return context.chart.data.labels[context.value];
                             }
                         },
-                        legend: {
-                            display: false
-                        }
+                        
                     },
                     scale: {
                         angleLines: {
