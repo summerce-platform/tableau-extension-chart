@@ -125,100 +125,31 @@
                 _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
             }
 
-            // // Change default options for ALL charts
-            // Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
-            //     opacity: 1,
-            //     color: 'white',
-            //     borderColor: '#11469e',
-            //     borderWidth: 2,
-            //     borderRadius: 100,
-            //     font: {
-            //         weight: 'bold',
-            //         size: 14,
-            //         lineHeight: 1 /* align v center */
-            //     },
-            //     padding: {
-            //         top: 5
-            //     },
-            //     /* hover styling */
-            //     backgroundColor: function (context) {
-            //         return context.hovered ? context.dataset.borderColor : 'white';
-            //     },
-            //     color: function (context) {
-            //         return context.hovered ? 'white' : context.dataset.borderColor;
-            //     },
-            //     listeners: {
-            //         enter: function (context) {
-            //             context.hovered = true;
-            //             return true;
-            //         },
-            //         leave: function (context) {
-            //             context.hovered = false;
-            //             return true;
-            //         }
-            //     }
-            // });
-
-            // Chart.scaleService.updateScaleDefaults('radar', {
-            //     ticks: {
-            //         min: 0
-            //     }
-            // });
-
-
             mydata = {
                 labels: labels,
                 datasets: [{
                     label: 'USER',
-                    backgroundColor: "rgba(38,120,255,0.2)",
-                    borderColor: "rgba(38,120,255, 1)",
+                    fill : true,
+                    backgroundColor: 'rgb(3, 4 ,101 ,0.3)',
+                    borderColor: 'rgb(3, 4 ,101 ,0.3)',
+                    pointHoverBackgroundColor : 'rgb(122, 122, 122)',
+                    pointHoverBorderColor : '',
                     data: _tempSeriesData,
-                    // borderJoinStyle: 'round',
+                    borderJoinStyle : 'round',
                 }]
             };
-
-            var options = {
-                responsive: true,
-                tooltips: {
-                    enabled: false
-                },
-                hover: {
-                    animationDuration: 0
-                },
-                animation: {
-                    duration: 1,
-                    onComplete: function () {
-                        var chartInstance = this.chart,
-                            ctx = chartInstance.ctx;
-                        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-                        ctx.fillStyle = 'purple';
-                        ctx.textAlign = 'center';
-                        ctx.textBaseline = 'bottom';
-    
-                        this.data.datasets.forEach(function (dataset, i) {
-                            var meta = chartInstance.controller.getDatasetMeta(i);
-                            meta.data.forEach(function (bar, index) {
-                                var data = dataset.data[index];							
-                                ctx.fillText(data, bar._model.x, bar._model.y - 5);
-                            });
-                        });
-                    }
-                },
-                // scales: {
-                //     yAxes: [{
-                //         ticks: {
-                //             beginAtZero: true,
-                //             stepSize : 2,
-                //             fontSize : 14,
-                //         }
-                //     }]
-                // }
-            }
-
             var config = {
                 type: 'radar',
                 data: mydata,
-                options: options
+                responsive : true,
+                options: {
+                    plugins : {
+                        legend :{
+                            display : false
+                        }
+                    }
+                },
+                
             };
             myChart = new Chart(
                 document.getElementById('chartArea'),
