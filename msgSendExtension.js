@@ -22,7 +22,7 @@
 
 
                 tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
-                    myChart.detroy();
+                    myChart.destroy();
                     render(sendData2);
                 });
             }
