@@ -122,8 +122,8 @@
                 name: 'sample',
                 data: _tempSeriesData
             });
-            console.log(_tempSeriesData)
-            console.log(chartData.series)
+            console.log(chartData)
+            
 
             chart = toastui.Chart.radarChart({
                 el,
