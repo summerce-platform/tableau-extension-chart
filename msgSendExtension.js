@@ -1,5 +1,7 @@
 "use strict";
 
+const { TuiGridEvent } = require("tui-grid/types/event");
+
 (function () {
     const defaultIntervalInMin = "5";
     let activeDatasourceIdList = [];
@@ -46,7 +48,6 @@
                 console.log("활성화됨")
                 console.log("senddata", tableau.extensions.settings.get("sendDataKey"));
                 var sendData = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
-
                 render(sendData);
             })
             .catch((error) => {
