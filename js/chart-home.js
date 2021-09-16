@@ -129,27 +129,27 @@
                 labels: labels,
                 datasets: [{
                     label: 'USER',
-                    fill : true,
-                    backgroundColor: 'rgb(3, 4 ,101 ,0.3)',
-                    borderColor: 'rgb(3, 4 ,101 ,0.3)',
-                    pointHoverBackgroundColor : 'rgb(122, 122, 122)',
-                    pointHoverBorderColor : '',
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)',
                     data: _tempSeriesData,
-                    borderJoinStyle : 'round',
+                    borderJoinStyle: 'round',
                 }]
             };
             var config = {
                 type: 'radar',
                 data: mydata,
-                responsive : true,
+                responsive: true,
                 options: {
-                    plugins : {
-                        legend :{
-                            display : false
+                    plugins: {
+                        legend: {
+                            display: false
                         }
                     }
                 },
-                
+
             };
             myChart = new Chart(
                 document.getElementById('chartArea'),
