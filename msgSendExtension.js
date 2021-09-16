@@ -17,7 +17,6 @@
             height: 'auto'
         },
     };
-    var chart;
 
     $(document).ready(function () {
         $("#configureBtn").on("click", function () {
@@ -125,7 +124,7 @@
             console.log(chartData)
             
 
-            chart = toastui.Chart.radarChart({
+            const chart = toastui.Chart.radarChart({
                 el,
                 chartData,
                 chartOptions
