@@ -1,6 +1,5 @@
 "use strict";
 
-const { TuiGridEvent } = require("tui-grid/types/event");
 
 (function () {
     const defaultIntervalInMin = "5";
