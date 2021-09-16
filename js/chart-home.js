@@ -125,45 +125,45 @@
                 _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
             }
 
-            // Change default options for ALL charts
-            Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
-                opacity: 1,
-                color: 'white',
-                borderColor: '#11469e',
-                borderWidth: 2,
-                borderRadius: 100,
-                font: {
-                    weight: 'bold',
-                    size: 14,
-                    lineHeight: 1 /* align v center */
-                },
-                padding: {
-                    top: 5
-                },
-                /* hover styling */
-                backgroundColor: function (context) {
-                    return context.hovered ? context.dataset.borderColor : 'white';
-                },
-                color: function (context) {
-                    return context.hovered ? 'white' : context.dataset.borderColor;
-                },
-                listeners: {
-                    enter: function (context) {
-                        context.hovered = true;
-                        return true;
-                    },
-                    leave: function (context) {
-                        context.hovered = false;
-                        return true;
-                    }
-                }
-            });
+            // // Change default options for ALL charts
+            // Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
+            //     opacity: 1,
+            //     color: 'white',
+            //     borderColor: '#11469e',
+            //     borderWidth: 2,
+            //     borderRadius: 100,
+            //     font: {
+            //         weight: 'bold',
+            //         size: 14,
+            //         lineHeight: 1 /* align v center */
+            //     },
+            //     padding: {
+            //         top: 5
+            //     },
+            //     /* hover styling */
+            //     backgroundColor: function (context) {
+            //         return context.hovered ? context.dataset.borderColor : 'white';
+            //     },
+            //     color: function (context) {
+            //         return context.hovered ? 'white' : context.dataset.borderColor;
+            //     },
+            //     listeners: {
+            //         enter: function (context) {
+            //             context.hovered = true;
+            //             return true;
+            //         },
+            //         leave: function (context) {
+            //             context.hovered = false;
+            //             return true;
+            //         }
+            //     }
+            // });
 
-            Chart.scaleService.updateScaleDefaults('radar', {
-                ticks: {
-                    min: 0
-                }
-            });
+            // Chart.scaleService.updateScaleDefaults('radar', {
+            //     ticks: {
+            //         min: 0
+            //     }
+            // });
 
 
             mydata = {
@@ -178,42 +178,42 @@
             };
 
             var options = {
-                responsive: true,
-                tooltips: false,
-                plugins: {
-                  /* ######### https://chartjs-plugin-datalabels.netlify.com/ #########*/
-                  datalabels: {
-                    /* formatter */
-                    formatter: function(value, context) {
-                      return context.chart.data.labels[context.value];
-                    }
-                  }
+                responsive: false,
+                tooltips: {
+                    enabled: false
                 },
-                /* scale: https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings */
-                scale: {
-                  angleLines: {
-                    display: true
-                  },
-                  pointLabels:{
-                    /* https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options */
-                    fontSize: 15,
-                    fontColor: 'black',
-                    fontStyle: 'bold',
-                    callback: function(value, index, values) {
-                      return value;
-                    }
-                  },
-                  ticks: {
-                    /* https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration */
-                    /* suggestedMax and suggestedMin settings only change the data values that are used to scale the axis */
-                    suggestedMin: 0,
-                    suggestedMax: 100,
-                    stepSize: 25, /* 25 - 50 - 75 - 100 */
-                    display: false, // remove label text only,
-                  }
+                hover: {
+                    animationDuration: 0
                 },
-                legend: false
-              };
+                animation: {
+                    duration: 1,
+                    onComplete: function () {
+                        var chartInstance = this.chart,
+                            ctx = chartInstance.ctx;
+                        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                        ctx.fillStyle = 'purple';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'bottom';
+    
+                        this.data.datasets.forEach(function (dataset, i) {
+                            var meta = chartInstance.controller.getDatasetMeta(i);
+                            meta.data.forEach(function (bar, index) {
+                                var data = dataset.data[index];							
+                                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                            });
+                        });
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize : 2,
+                            fontSize : 14,
+                        }
+                    }]
+                }
+            }
 
             var config = {
                 type: 'radar',
