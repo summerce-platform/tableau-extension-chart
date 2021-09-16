@@ -146,12 +146,15 @@
                     plugins : {
                         datalabels :{
                             formatter : function(value,context){
-                                return context.chart.data.labels[context.dataIndex];
+                                return context.chart.data.labels[context.value];
                             }
                         },
                         legend :{
                             display : false
-                        }
+                        },
+                        tooltip :{
+                            enable : false
+                        },
                     }
                 },
             };
