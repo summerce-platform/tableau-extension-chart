@@ -73,7 +73,7 @@
             $("#select-column-value-area").empty();
             colArray.forEach((col) => {
                 // 시트의 이름으로 된, 시트의 이름을 부모에게 반환하는 버튼 생성
-                let btn = makeColBtn(col.edge);
+                let btn = makeColBtn(col);
                 // 원하는 영역에 붙이기
                 $("#select-column-edge-area").append(btn.edge);
                 $("#select-column-value-area").append(btn.value);
