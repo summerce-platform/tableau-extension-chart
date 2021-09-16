@@ -114,14 +114,16 @@
 
             // fiveArr = new Set(fiveArr);
             // fiveArr = [...fiveArr];
-            let _tempSeriesData =[];
+            let _tempSeriesData = [];
             for (b = 0; b < worksheetData.data.length; b++) {
                 _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
             }
             chartData.series.push({
                 name: 'sample',
-                data: _tempSeriesData});
-            
+                data: _tempSeriesData
+            });
+            console.log(_tempSeriesData)
+            console.log(`chartData는${chartData}`)
 
             chart = toastui.Chart.radarChart({
                 el,
