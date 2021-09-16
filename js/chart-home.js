@@ -166,6 +166,17 @@
             });
 
 
+            mydata = {
+                labels: labels,
+                datasets: [{
+                    label: 'USER',
+                    backgroundColor: "rgba(38,120,255,0.2)",
+                    borderColor: "rgba(38,120,255, 1)",
+                    data: _tempSeriesData,
+                    // borderJoinStyle: 'round',
+                }]
+            };
+            
             var options = {
                 responsive: true,
                 tooltips: false,
@@ -217,19 +228,6 @@
                 },
               };
 
-            mydata = {
-                labels: labels,
-                datasets: [{
-                    label: 'USER',
-                    fill: true,
-                    backgroundColor: 'rgb(3, 4 ,101 ,0.3)',
-                    borderColor: 'rgb(3, 4 ,101 ,0.3)',
-                    pointHoverBackgroundColor: 'rgb(122, 122, 122)',
-                    pointHoverBorderColor: '',
-                    data: _tempSeriesData,
-                    borderJoinStyle: 'round',
-                }]
-            };
             var config = {
                 type: 'radar',
                 data: mydata,
