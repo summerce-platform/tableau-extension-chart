@@ -8,6 +8,8 @@
     var labels = [];
     var mydata;
     var myChart;
+    let unregisterSettingsEventListener = null;
+
     $(document).ready(function () {
         $("#configureBtn").on("click", function () {
             configure();
@@ -19,13 +21,19 @@
                 var sendData2 = JSON.parse(tableau.extensions.settings.get("sendDataKey"));
 
                 render(sendData2);
-
+                // We add our Settings and Parameter listeners here  listener here.
+                unregisterSettingsEventListener = tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) => {
+                    render(sendData2);
+                });
+                tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
+                    parameters.forEach(function (p) {
+                        p.addEventListener(tableau.TableauEventType.ParameterChanged, (filterEvent) => {
+                            // myChart.destroy();
+                            render(sendData2);
+                        });
+                    });
+                });
             }
-        });
-
-        tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
-            myChart.destroy();
-            render(sendData2);
         });
     });
 
