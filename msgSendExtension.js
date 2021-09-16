@@ -1,6 +1,6 @@
 "use strict";
 
-(function (MessageAPI) {
+(function () {
     const defaultIntervalInMin = "5";
     let activeDatasourceIdList = [];
     const el = document.getElementById('chartArea');
@@ -123,7 +123,7 @@
             target.sendList = fiveArr;
         });
     });
-})(MessageAPI);
+})();
 
 // columns에서 userid1이라는 객체만 뽑아보기
 //각각의 5번 가져오기
