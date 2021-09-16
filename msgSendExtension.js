@@ -1,5 +1,4 @@
 "use strict";
-import { RadarChart } from '@toast-ui/chart';
 
 (function () {
     const defaultIntervalInMin = "5";
@@ -169,9 +168,8 @@ import { RadarChart } from '@toast-ui/chart';
               chart: { title: 'Annual Incomes', width: 600, height: 600 },
               series: { selectable: true },
             };
-
-            const chart = new RadarChart({ el2, data2, options });
-
+            const chart = toastui.Chart.radarChart({ el2, data2, options });
+            
             // const chart = toastui.Chart.radarChart({
             //     el,
             //     testdata,
@@ -179,10 +177,10 @@ import { RadarChart } from '@toast-ui/chart';
             // });
 
             // $("input[name='sendingList']").val(fiveArr);
-            return new Promise((resolve, reject) => {
+            // return new Promise((resolve, reject) => {
 
-                resolve(fiveArr);
-            });
+            //     resolve(fiveArr);
+            // });
             ///아이디값을 보내서 휴대폰번호를 얻는 ajax구문 작성
 
             // console.log(fiveArr);
