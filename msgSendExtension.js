@@ -28,7 +28,7 @@
         });
     });
     function configure() {
-        const popupUrl = `https://ninecube.kr/tableau-extension/msgSendDialogExtension`;
+        const popupUrl = `https://summerce-platform.github.io/tableau-extension-chart/msgSendDialogExtension.html`;
         tableau.extensions.ui
             .displayDialogAsync(popupUrl, defaultIntervalInMin, { height: 730, width: 470 })
             .then((closePayload) => {
