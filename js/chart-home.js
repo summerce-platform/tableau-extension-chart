@@ -23,12 +23,14 @@
                 render(sendData2);
                 // We add our Settings and Parameter listeners here  listener here.
                 unregisterSettingsEventListener = tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) => {
+                    console.log("setting changed")
                     myChart.destroy();
                     labels = [];
                     render(sendData2);
                 });
                 // parameter change시, 바뀐 parameter 값에 의해 차트 reload
                 tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
+                    console.log("parameter changed!")
                     parameters.forEach(function (p) {
                         p.addEventListener(tableau.TableauEventType.ParameterChanged, (filterEvent) => {
                             myChart.destroy();
@@ -126,16 +128,24 @@
             mydata = {
                 labels: labels,
                 datasets: [{
-                    label: 'My First dataset',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    label: 'USER',
+                    fill : true,
+                    backgroundColor: '#595bd9',
+                    borderColor: '#282abf',
                     data: _tempSeriesData,
+                    borderJoinStyle : 'round',
                 }]
             };
             var config = {
                 type: 'radar',
                 data: mydata,
-                options: {}
+                options: {
+                    plugins : {
+                        legend :{
+                            display : false
+                        }
+                    }
+                }
             };
             myChart = new Chart(
                 document.getElementById('chartArea'),

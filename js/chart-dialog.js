@@ -98,7 +98,7 @@
         colBtn1.text(colName);
         colBtn1.addClass("btn btn-block btn-sm btn-arctic-blue");
         colBtn2.text(colName);
-        colBtn2.addClass("btn btn-block btn-sm btn-outline-arctic-info");
+        colBtn2.addClass("btn btn-block btn-sm btn-arctic-outline-info");
         // sheetName을 그대로 부모에게 반환하며 종료하는 함수 연결
         colBtn1.on("click", () => {
             $("#select-column-edge-area>button").removeClass("active");

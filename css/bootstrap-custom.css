@@ -794,8 +794,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:b
   color: #0081ff;
   font-weight: 800;
   background: rgba(0, 129, 255, 0.1);
-  -webkit-transition: 200ms linear;
-  transition: 200ms linear;
 }
 
 .btn-arctic-blue:hover {
@@ -814,8 +812,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:b
   font-weight: 800;
   color: #fff;
   background: #5e5ce6;
-  -webkit-transition: 200ms linear;
-  transition: 200ms linear;
 }
 
 .btn-arctic-info-reverse:hover {
@@ -834,8 +830,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:b
   font-weight: 800;
   color: #fff;
   background: #707070;
-  -webkit-transition: 200ms linear;
-  transition: 200ms linear;
 }
 
 .btn-arctic-secondary-reverse:hover {
@@ -854,8 +848,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:b
   color: #8a909d;
   font-weight: 800;
   background: rgba(146, 146, 146, 0.1);
-  -webkit-transition: 200ms linear;
-  transition: 200ms linear;
 }
 
 .btn-arctic-secondary:hover {
@@ -888,8 +880,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:b
   color: #5e5ce6;
   font-weight: 800;
   background: rgba(94, 92, 230, 0.1);
-  -webkit-transition: 200ms linear;
-  transition: 200ms linear;
 }
 
 .btn-arctic-outline-info:hover {
