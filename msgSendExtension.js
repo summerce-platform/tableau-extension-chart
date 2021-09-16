@@ -5,7 +5,7 @@
     const defaultIntervalInMin = "5";
     let activeDatasourceIdList = [];
     const ctx = document.getElementById('chart');
-    var labels;
+    var labels =[];
     var mydata;
 
     $(document).ready(function () {
@@ -95,7 +95,7 @@
             fiveArr = [];
             let _tempCateData=[];
             for (k = 0; k < worksheetData.data.length; k++) {
-                _tempCateData.push(worksheetData.data[k][i].formattedValue);
+                labels.push(worksheetData.data[k][i].formattedValue);
             }
 
             // fiveArr = new Set(fiveArr);
@@ -105,25 +105,17 @@
                 _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
             }
 
-            labels=[
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-              ];
             mydata= {
                 labels: labels,
                 datasets: [{
                   label: 'My First dataset',
                   backgroundColor: 'rgb(255, 99, 132)',
                   borderColor: 'rgb(255, 99, 132)',
-                  data: [0, 10, 5, 2, 20, 30, 45],
+                  data: _tempSeriesData,
                 }]
               };
               var config = {
-                type: 'line',
+                type: 'radar',
                 data: mydata,
                 options: {}
               };
@@ -131,7 +123,6 @@
                 document.getElementById('chartArea'),
                 config
               );
-            console.log(chartData)
 
             ///테스트...
 
