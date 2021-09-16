@@ -178,7 +178,7 @@
             };
 
             var options = {
-                responsive: false,
+                responsive: true,
                 tooltips: {
                     enabled: false
                 },
@@ -204,15 +204,15 @@
                         });
                     }
                 },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize : 2,
-                            fontSize : 14,
-                        }
-                    }]
-                }
+                // scales: {
+                //     yAxes: [{
+                //         ticks: {
+                //             beginAtZero: true,
+                //             stepSize : 2,
+                //             fontSize : 14,
+                //         }
+                //     }]
+                // }
             }
 
             var config = {
