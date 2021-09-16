@@ -142,36 +142,43 @@
                 ]
             });
             console.log(chartData)
-            const testdata = {
-                categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
-                series: [
-                  {
-                    name: 'Budget',
-                    data: [5000, 3000, 5000, 7000, 6000, 4000],
-                  },
-                  {
-                    name: 'Income',
-                    data: [8000, 4000, 7000, 2000, 6000, 3000],
-                  },
-                  {
-                    name: 'Expenses',
-                    data: [4000, 4000, 6000, 3000, 4000, 5000],
-                  },
-                  {
-                    name: 'Debt',
-                    data: [3000, 4000, 3000, 1000, 2000, 4000],
-                  },
-                ],
-              };
-
-            const chart = toastui.Chart.radarChart({
-                el,
-                testdata,
-                chartOptions
-            });
+            const el2 = document.getElementById('chartArea');
+            const data2 = {
+              categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+              series: [
+                {
+                  name: 'Budget',
+                  data: [5000, 3000, 5000, 7000, 6000, 4000],
+                },
+                {
+                  name: 'Income',
+                  data: [8000, 4000, 7000, 2000, 6000, 3000],
+                },
+                {
+                  name: 'Expenses',
+                  data: [4000, 4000, 6000, 3000, 4000, 5000],
+                },
+                {
+                  name: 'Debt',
+                  data: [3000, 4000, 3000, 1000, 2000, 4000],
+                },
+              ],
+            };
+            const options = {
+              chart: { title: 'Annual Incomes', width: 600, height: 600 },
+              series: { selectable: true },
+            };
+      
+            // const chart = toastui.Chart.radarChart({
+            //     el,
+            //     testdata,
+            //     chartOptions
+            // });
 
             // $("input[name='sendingList']").val(fiveArr);
             return new Promise((resolve, reject) => {
+                const chart = toastui.Chart.radarChart({ el2, data2, options });
+
                 resolve(fiveArr);
             });
             ///아이디값을 보내서 휴대폰번호를 얻는 ajax구문 작성
