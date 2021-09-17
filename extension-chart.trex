@@ -25,7 +25,7 @@
   </dashboard-extension>
   <resources>
     <resource id="name">
-      <text locale="en_US">extension chart powered by chart.js/text>
+      <text locale="en_US">extension chart powered by chart.js</text>
     </resource>
   </resources>
 <!-- context-menu는 하나의 항목만 포함되어있음 -->
