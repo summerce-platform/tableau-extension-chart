@@ -147,6 +147,9 @@
                         legend: {
                             display: false
                         }
+                    },
+                    scale : {
+                        min : -30
                     }
                 },
 
