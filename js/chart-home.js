@@ -149,8 +149,8 @@
                         }
                     },
                     scale : {
-                        min : -30,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        suggestedMin : -20,
+                        backdropColor : 'rgba(255, 99, 132, 0.2)'
                     }
                 },
 
