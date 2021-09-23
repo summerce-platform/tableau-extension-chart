@@ -150,7 +150,7 @@
                     },
                     scale : {
                         suggestedMin : -20,
-                        backdropColor : 'rgba(255, 99, 132, 0.2)'
+                        beginAtZero : false,
                     }
                 },
 
