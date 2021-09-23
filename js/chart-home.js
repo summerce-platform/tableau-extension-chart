@@ -147,16 +147,13 @@
                             display: false
                         }
                     },
-                    scale: {
+                    scales: {
                         suggestedMin: -20,
-                        beginAtZero: false,
                         r: {
-                            callback: function (val, index) {
-                                // Hide the label of every 2nd dataset
-                                console.log(val, index);
-                                return '';
-                            },
-
+                            ticks: {
+                                color: 'red',
+                                display: false,
+                            }
                         }
                     }
                 },
