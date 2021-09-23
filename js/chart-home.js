@@ -148,8 +148,8 @@
                         }
                     },
                     scales: {
-                        suggestedMin: -20,
                         r: {
+                            suggestedMin: -20,
                             ticks: {
                                 color: 'red',
                                 display: false,
