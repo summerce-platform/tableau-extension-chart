@@ -149,7 +149,8 @@
                         }
                     },
                     scale : {
-                        min : -30
+                        min : -30,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     }
                 },
 
