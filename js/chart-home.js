@@ -150,6 +150,10 @@
                     scale : {
                         suggestedMin : -20,
                         beginAtZero : false,
+                        callback: function(val, index) {
+                            // Hide the label of every 2nd dataset
+                            return '';
+                        },
                     }
                 },
 
