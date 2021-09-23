@@ -117,7 +117,9 @@
             for (k = 0; k < worksheetData.data.length; k++) {
                 labels.push(worksheetData.data[k][i].formattedValue);
             }
-
+            if(labels.length<5){
+                labels = ['가구','화장품','패션,잡화','컴퓨터','주방가전','유아,완구','영상,디카','액세서리','식품','스포츠','생활가전','생활취미'];
+            }
             // fiveArr = new Set(fiveArr);
             // fiveArr = [...fiveArr];
             let _tempSeriesData = [];
