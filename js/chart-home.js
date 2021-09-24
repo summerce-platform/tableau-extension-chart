@@ -163,8 +163,6 @@
                     borderJoinStyle: 'round',
                 }]
             };
-            Chart.defaults.global.defaultFontSize=13;
-            Chart.defaults.global.defaultFontStyle="bold";
             console.log(sMax);
             var config = {
                 type: 'radar',
@@ -183,6 +181,12 @@
                             ticks: {
                                 color: 'red',
                                 display: false,
+                            },
+                            pointLabels : {
+                                font :{
+                                    size : 13,
+                                    weight : "bold"
+                                }
                             }
                         }
                     }
