@@ -125,9 +125,11 @@
                 _seriesData.push(worksheetData.data[b][a].formattedValue);
             }
             var sMax = _seriesData.reduce((previous,current)=>{
-                return Number(previous) > Number(current) ? Number(previous)+10:Number(current);
+                return Number(previous) > Number(current) ? Number(previous):Number(current);
             })
-
+            if(sMax<10){
+                sMax=sMax+10;
+            }
             // 구매 카테가 5개 미만인 경우, 강제로 라벨을 확대시키고, 빈 카테 value는 0으로 처리
             if(labels.length<5){
                 console.log(labels,_seriesData);
@@ -174,6 +176,7 @@
                     }]
                 };
             }
+            console.log(sMax);
             var config = {
                 type: 'radar',
                 data: mydata,
