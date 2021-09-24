@@ -128,35 +128,48 @@
             if(labels.length<5){
                 console.log(labels,_seriesData);
                 var tempLabels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
-                var tempLabels2 = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
+                var tempSeriesData = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
                 var tempSeriesIndex = [];
                 var c=0;
                 for(c=0;c<tempLabels.length;c++){
                     if(tempLabels.includes(labels[c])===true){
                         let _idx = tempLabels.indexOf(labels[c]);
-                        tempLabels2[_idx]=Number(_seriesData[c]);
+                        tempSeriesData[_idx]=Number(_seriesData[c]);
                     }
                     
                 }
-                tempLabels2.map((elem,idx,arr)=>{
+                tempSeriesData.map((elem,idx,arr)=>{
                     if(typeof(elem)==='string'){
                         arr[idx]=0;
                     }
                 })
-               console.log(tempLabels2);
+                mydata = {
+                    labels: tempLabels,
+                    datasets: [{
+                        label: '',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(255, 99, 132)',
+                        data: tempSeriesData,
+                        borderJoinStyle: 'round',
+                    }]
+                };
             }
-            mydata = {
-                labels: labels,
-                datasets: [{
-                    label: '',
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(255, 99, 132)',
-                    data: _seriesData,
-                    borderJoinStyle: 'round',
-                }]
-            };
+            else{
+                mydata = {
+                    labels: labels,
+                    datasets: [{
+                        label: '',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(255, 99, 132)',
+                        data: _seriesData,
+                        borderJoinStyle: 'round',
+                    }]
+                };
+            }
             var config = {
                 type: 'radar',
                 data: mydata,
