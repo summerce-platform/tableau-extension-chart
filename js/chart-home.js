@@ -120,14 +120,21 @@
           
             // fiveArr = new Set(fiveArr);
             // fiveArr = [...fiveArr];
-            let _tempSeriesData = [];
+            let _seriesData = [];
             for (b = 0; b < worksheetData.data.length; b++) {
-                _tempSeriesData.push(worksheetData.data[b][a].formattedValue);
+                _seriesData.push(worksheetData.data[b][a].formattedValue);
             }
             // 구매 카테가 5개 미만인 경우, 강제로 라벨을 확대시키고, 빈 카테 value는 0으로 처리
             if(labels.length<5){
-                labels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
-                console.log(labels,_tempSeriesData);
+                console.log(labels,_seriesData);
+                var tempLabels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
+                var tempSeriesData = [];
+                var tempIndex = tempLabels.findIndex((ele)=>{
+                    for(c=0;c<labels.length;c++){
+                        ele===labels[c]
+                    }
+                })
+               console.log(tempIndex);
             }
             mydata = {
                 labels: labels,
@@ -137,7 +144,7 @@
                     borderColor: 'rgb(255, 99, 132)',
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgb(255, 99, 132)',
-                    data: _tempSeriesData,
+                    data: _seriesData,
                     borderJoinStyle: 'round',
                 }]
             };
