@@ -79,6 +79,8 @@
     // }
     // var receiversList;
     var fiveArr;
+    function uncomma(str) { str = String(str); return str.replace(/[^\d]+/g, ''); }
+
 
     function render(sendData) {
         $("#inactive").hide();
@@ -125,7 +127,7 @@
                 _seriesData.push(worksheetData.data[b][a].formattedValue);
             }
             var sMax = _seriesData.reduce((previous,current)=>{
-                return Number(previous) > Number(current) ? Number(previous):Number(current);
+                return Number(uncomma(previous)) > Number(uncomma(current)) ? Number(uncomma(previous)):Number(uncomma(current));
             })
             if(sMax<10){
                 sMax=sMax+10;
