@@ -127,8 +127,8 @@
             // 구매 카테가 5개 미만인 경우, 강제로 라벨을 확대시키고, 빈 카테 value는 0으로 처리
             if(labels.length<5){
                 console.log(labels,_seriesData);
-                var tempLabels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
-                var tempSeriesData = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
+                var tempLabels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','화장품','유아','컴퓨터','태블릿/모바일/디카','패션'];
+                var tempSeriesData = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','화장품','유아','컴퓨터','태블릿/모바일/디카','패션'];
                 var tempSeriesIndex = [];
                 var c=0;
                 for(c=0;c<tempLabels.length;c++){
@@ -140,7 +140,7 @@
                 }
                 tempSeriesData.map((elem,idx,arr)=>{
                     if(typeof(elem)==='string'){
-                        arr[idx]=-10;
+                        arr[idx]=-5;
                     }
                 })
                 mydata = {
