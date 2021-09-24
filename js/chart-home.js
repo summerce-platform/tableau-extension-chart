@@ -118,7 +118,7 @@
                 labels.push(worksheetData.data[k][i].formattedValue);
             }
             if(labels.length<5){
-                labels = ['가구','화장품','패션,잡화','컴퓨터','주방가전','유아,완구','영상,디카','액세서리','식품','스포츠','생활가전','생활취미'];
+                labels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
             }
             // fiveArr = new Set(fiveArr);
             // fiveArr = [...fiveArr];
