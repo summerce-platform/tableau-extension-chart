@@ -168,6 +168,8 @@
                 type: 'radar',
                 data: mydata,
                 responsive: true,
+                defaultFontStyle : "bold",
+                defaultFontSize : 13,
                 options: {
                     plugins: {
                         legend: {
