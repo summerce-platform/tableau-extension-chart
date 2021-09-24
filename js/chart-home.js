@@ -134,8 +134,7 @@
                 for(c=0;c<tempLabels.length;c++){
                     if(tempLabels.includes(labels[c])===true){
                         let _idx = tempLabels.indexOf(labels[c]);
-                        tempLabels2[_idx]=_seriesData[c];
-                        
+                        tempLabels2[_idx]=Number(_seriesData[c]);
                     }
                 }
                 
