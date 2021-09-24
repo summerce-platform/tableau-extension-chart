@@ -129,6 +129,7 @@
                 console.log(labels,_seriesData);
                 var tempLabels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
                 var tempSeriesData = [];
+                var c=0;
                 var tempIndex = tempLabels.findIndex((ele)=>{
                     for(c=0;c<labels.length;c++){
                         ele===labels[c]
