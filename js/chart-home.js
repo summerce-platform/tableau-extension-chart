@@ -140,7 +140,7 @@
                 }
                 tempSeriesData.map((elem,idx,arr)=>{
                     if(typeof(elem)==='string'){
-                        arr[idx]=0;
+                        arr[idx]=null;
                     }
                 })
                 mydata = {
