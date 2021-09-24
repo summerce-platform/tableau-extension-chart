@@ -128,17 +128,18 @@
             if(labels.length<5){
                 console.log(labels,_seriesData);
                 var tempLabels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
-                var tempSeriesData = [];
+                var tempLabels2 = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','유아','컴퓨터','태블릿/모바일/디카','패션'];
+                var tempSeriesIndex = [];
                 var c=0;
-                var tempIndex = tempLabels.findIndex((ele,idx)=>{
-                    for(c=0;c<labels.length;c++){
-                        if(ele===labels[c]){
-                            tempSeriesData.push(idx)
-                        }
+                for(c=0;c<tempLabels.length;c++){
+                    if(tempLabels.includes(labels[c])===true){
+                        let _idx = tempLabels.indexOf(labels[c]);
+                        tempLabels2[_idx]=_seriesData[c];
                         
                     }
-                });
-               console.log(tempIndex);
+                }
+                
+               console.log(tempIndex,tempLabels2);
             }
             mydata = {
                 labels: labels,
