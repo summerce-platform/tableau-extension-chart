@@ -130,7 +130,7 @@
             mydata = {
                 labels: labels,
                 datasets: [{
-                    label: 'USER',
+                    label: '',
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgb(255, 99, 132)',
                     pointHoverBackgroundColor: '#fff',
