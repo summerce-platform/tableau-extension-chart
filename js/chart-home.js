@@ -184,7 +184,7 @@
                             },
                             pointLabels : {
                                 font :{
-                                    size : 13,
+                                    size : 12,
                                     weight : "bold"
                                 }
                             }
