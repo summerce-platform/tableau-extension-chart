@@ -136,8 +136,13 @@
                         let _idx = tempLabels.indexOf(labels[c]);
                         tempLabels2[_idx]=Number(_seriesData[c]);
                     }
+                    
                 }
-                
+                tempLabels2.map((elem)=>{
+                    if(typeof(elem)!==Number){
+                        elem=0;
+                    }
+                })
                console.log(tempLabels2);
             }
             mydata = {
