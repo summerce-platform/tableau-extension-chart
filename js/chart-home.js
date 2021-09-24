@@ -1,5 +1,7 @@
 "use strict";
 
+const { Chart } = require("chart.js");
+
 
 (function () {
     const defaultIntervalInMin = "5";
@@ -162,18 +164,13 @@
                     borderJoinStyle: 'round',
                 }]
             };
-            
+            Chart.defaults.global.defaultFontSize=13;
+            Chart.defaults.global.defaultFontStyle="bold";
             console.log(sMax);
             var config = {
                 type: 'radar',
                 data: mydata,
                 responsive: true,
-                defaults : {
-                    global : {
-                        defaultFontStyle : "bold",
-                        defaultFontSize : 13,
-                    }
-                },
                 options: {
                     plugins: {
                         legend: {
