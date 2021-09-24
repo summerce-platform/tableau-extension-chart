@@ -1,6 +1,5 @@
 "use strict";
 
-const { Chart } = require("chart.js");
 
 
 (function () {
