@@ -125,7 +125,7 @@
                 _seriesData.push(worksheetData.data[b][a].formattedValue);
             }
             var sMax = _seriesData.reduce((previous,current)=>{
-                return previous > current ? previous+20:current;
+                return Number(previous) > Number(current) ? Number(previous)+10:Number(current);
             })
 
             // 구매 카테가 5개 미만인 경우, 강제로 라벨을 확대시키고, 빈 카테 value는 0으로 처리
