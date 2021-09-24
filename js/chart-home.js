@@ -124,6 +124,10 @@
             for (b = 0; b < worksheetData.data.length; b++) {
                 _seriesData.push(worksheetData.data[b][a].formattedValue);
             }
+            var sMax = _seriesData.reduce((previous,current)=>{
+                return previous > current ? previous+20:current;
+            })
+
             // 구매 카테가 5개 미만인 경우, 강제로 라벨을 확대시키고, 빈 카테 value는 0으로 처리
             if(labels.length<5){
                 console.log(labels,_seriesData);
@@ -183,6 +187,7 @@
                     scales: {
                         r: {
                             suggestedMin: -20,
+                            suggestedMax : sMax,
                             ticks: {
                                 color: 'red',
                                 display: false,
