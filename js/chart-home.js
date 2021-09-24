@@ -139,7 +139,7 @@
                     }
                 }
                 
-               console.log(tempIndex,tempLabels2);
+               console.log(tempLabels2);
             }
             mydata = {
                 labels: labels,
