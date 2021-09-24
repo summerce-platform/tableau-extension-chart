@@ -168,8 +168,12 @@
                 type: 'radar',
                 data: mydata,
                 responsive: true,
-                defaultFontStyle : "bold",
-                defaultFontSize : 13,
+                defaults : {
+                    global : {
+                        defaultFontStyle : "bold",
+                        defaultFontSize : 13,
+                    }
+                },
                 options: {
                     plugins: {
                         legend: {
