@@ -138,12 +138,12 @@
                     }
                     
                 }
-                tempLabels2.map((elem)=>{
+                let _tempSeriesData = tempLabels2.map((elem)=>{
                     if(typeof(elem)!==Number){
                         elem=0;
                     }
                 })
-               console.log(tempLabels2);
+               console.log(tempLabels2,_tempSeriesData);
             }
             mydata = {
                 labels: labels,
