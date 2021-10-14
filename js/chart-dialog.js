@@ -101,30 +101,23 @@
         colBtn2.text(colName);
         colBtn2.addClass("btn btn-block btn-sm btn-arctic-outline-info");
         // sheetName을 그대로 부모에게 반환하며 종료하는 함수 연결
-        $(document).on("click",".btn btn-block btn-sm btn-arctic-blue",function(event){
-            console.log(this);
+
+        colBtn1.on("click",this, () => {
             $("#select-column-edge-area>button").removeClass("active");
-            $(this).addClass("active");
-        });
-        $(document).on("click",".btn btn-block btn-sm btn-arctic-outline-info",function(event){
+            // $(`#select-column-edge-area>button:contains(${colName})`).addClass("active");
+            $(`#select-column-edge-area>button`).filter(()=>{ 
+                console.log(this); 
+                return $(this).text()===colName;}).addClass("active");
             console.log(this);
-            $("#select-column-value-area>button").removeClass("active");
             $(this).addClass("active");
         });
-        // colBtn1.on("click",this, () => {
-        //     $("#select-column-edge-area>button").removeClass("active");
-        //     // $(`#select-column-edge-area>button:contains(${colName})`).addClass("active");
-        //     // $(`#select-column-edge-area>button`).filter(()=>{return $(this).text()===colName;}).addClass("active");
-        //     console.log(this);
-        //     $(this).addClass("active");
-        // });
-        // colBtn2.on("click", () => {
-        //     $("#select-column-value-area>button").removeClass("active");
-        //     // $(`#select-column-value-area>button:contains(${colName})`).addClass("active");
-        //     // $(`#select-column-value-area>button`).filter(()=>{return $(this).text()===colName;}).addClass("active");
-        //     console.log(this);
-        //     $(this).addClass("active");
-        // });
+        colBtn2.on("click", () => {
+            $("#select-column-value-area>button").removeClass("active");
+            $(`#select-column-value-area>button:contains(${colName})`).addClass("active");
+            // $(`#select-column-value-area>button`).filter(()=>{return $(this).text()===colName;}).addClass("active");
+            console.log(this);
+            $(this).addClass("active");
+        });
         return {
             edge : colBtn1,
             value : colBtn2
