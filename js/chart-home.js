@@ -138,7 +138,7 @@
             // labels 번역기
             if(labels.includes("Diversity")===true){
                 labels = labels.map((val,idx,arr)=>{
-                    return val.toUpperCase()==="DIVERSITY"?"다양성":val.toUpperCase()==="RECENCY"?"최근성":val.toUpperCase()==="MATURITY"?"성숙도":val.toUpperCase()==="FREQ"?"활성도":val.toUpperCase()==="LOYALTY"?"충성도":val;
+                    return val.toUpperCase()==="DIVERSITY"?"다양성":val.toUpperCase()==="RECENCY"?"최근성":val.toUpperCase()==="MATURITY"?"성숙도":val.toUpperCase()==="FREQUENCY"?"활성도":val.toUpperCase()==="LOYALTY"?"충성도":val;
                 })
             }
             
