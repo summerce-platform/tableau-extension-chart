@@ -92,17 +92,17 @@
         sheetBtn.on("click", () => selected(sheetName));
         return sheetBtn;
     }
-    const btn1Click = (btn)=>{
-        $("#select-column-edge-area>button").removeClass("active");
-        console.log(btn);
-        $(btn).addClass("active");
-    };
-    const btn2Click = (btn)=>{
-        $("#select-column-value-area>button").removeClass("active");
-        console.log(btn);
-        $(btn).addClass("active");
-    };
     function makeColBtn(colName) {
+        const btn1Click = (btn)=>{
+            $("#select-column-edge-area>button").removeClass("active");
+            console.log(btn);
+            $(btn).addClass("active");
+        };
+        const btn2Click = (btn)=>{
+            $("#select-column-value-area>button").removeClass("active");
+            console.log(btn);
+            $(btn).addClass("active");
+        };
         const colBtn1 = $("<button onclick='btn1Click(this);'></button>");
         const colBtn2 = $("<button onclick='btn2Click(this);'></button>");
         colBtn1.text(colName);
