@@ -127,39 +127,49 @@
             for (b = 0; b < worksheetData.data.length; b++) {
                 _seriesData.push(worksheetData.data[b][a].formattedValue);
             }
-            var sMax = _seriesData.reduce((previous,current)=>{
-                return Number(uncomma(previous)) > Number(uncomma(current)) ? Number(uncomma(previous)):Number(uncomma(current));
-            })
-            if(sMax<10){
-                sMax=sMax+10;
-            }
+            // var sMax = _seriesData.reduce((previous,current)=>{
+            //     return Number(uncomma(previous)) > Number(uncomma(current)) ? Number(uncomma(previous)):Number(uncomma(current));
+            // })
+            // if(sMax<10){
+            //     sMax=sMax+10;
+            // }
             // 구매 카테가 5개 미만인 경우, 강제로 라벨을 확대시키고, 빈 카테 value는 0으로 처리
             console.log(labels,_seriesData);
-            var tempLabels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','화장품','유아','컴퓨터','태블릿/모바일/디카','패션'];
-            var tempSeriesData = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','화장품','유아','컴퓨터','태블릿/모바일/디카','패션'];
-            var tempSeriesIndex = [];
-            var c=0;
-            for(c=0;c<tempLabels.length;c++){
-                if(tempLabels.includes(labels[c])===true){
-                    let _idx = tempLabels.indexOf(labels[c]);
-                    tempSeriesData[_idx]=Number(uncomma(_seriesData[c]));
-                }
-                
+            // labels 번역기
+            if(labels.includes("DIVERSITY")===true){
+                labels = labels.map((val,idx,arr)=>{
+                    return val==="DIVERSITY"?"다양성":val==="RECENCY"?"최근성":val==="MATURITY"?"성숙도":val==="FREQ"?"활성도":val==="LOYALTY"?"충성도":val;
+                })
             }
-            tempSeriesData.map((elem,idx,arr)=>{
-                if(typeof(elem)==='string'){
-                    arr[idx]=-5;
-                }
-            })
+            
+            console.log(labels);
+            // var tempLabels = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','화장품','유아','컴퓨터','태블릿/모바일/디카','패션'];
+            // var tempSeriesData = ['가구','가전/PC','공구/자동차','반려/취미/문구','생활용품','스포츠','식품','화장품','유아','컴퓨터','태블릿/모바일/디카','패션'];
+            // var tempSeriesIndex = [];
+            // var c=0;
+            // for(c=0;c<tempLabels.length;c++){
+            //     if(tempLabels.includes(labels[c])===true){
+            //         let _idx = tempLabels.indexOf(labels[c]);
+            //         tempSeriesData[_idx]=Number(uncomma(_seriesData[c]));
+            //     }
+                
+            // }
+            // tempSeriesData.map((elem,idx,arr)=>{
+            //     if(typeof(elem)==='string'){
+            //         arr[idx]=-5;
+            //     }
+            // })
             mydata = {
-                labels: tempLabels,
+                // labels: tempLabels,
+                labels : labels,
                 datasets: [{
                     label: '',
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgb(255, 99, 132)',
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgb(255, 99, 132)',
-                    data: tempSeriesData,
+                    // data: tempSeriesData,
+                    data: _seriesData,
                     borderJoinStyle: 'round',
                 }]
             };
@@ -176,8 +186,8 @@
                     },
                     scales: {
                         r: {
-                            suggestedMin: -10,
-                            suggestedMax : sMax,
+                            // suggestedMin: -10,
+                            // suggestedMax : sMax,
                             ticks: {
                                 color: 'red',
                                 display: false,
