@@ -186,8 +186,8 @@
                     },
                     scales: {
                         r: {
-                            // suggestedMin: -10,
-                            // suggestedMax : sMax,
+                            suggestedMin: 1,
+                            suggestedMax : 5,
                             ticks: {
                                 color: 'red',
                                 display: false,
