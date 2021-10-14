@@ -107,15 +107,13 @@
             // $(`#select-column-edge-area>button:contains(${colName})`).addClass("active");
             
             $(`#select-column-edge-area>button`).filter(function(){ 
-                console.log(this); 
                 return $(this).text()===colName;}).addClass("active");
-            console.log(this);
             $(this).addClass("active");
         });
         colBtn2.on("click", () => {
             $("#select-column-value-area>button").removeClass("active");
-            $(`#select-column-value-area>button:contains(${colName})`).addClass("active");
-            // $(`#select-column-value-area>button`).filter(()=>{return $(this).text()===colName;}).addClass("active");
+            // $(`#select-column-value-area>button:contains(${colName})`).addClass("active");
+            $(`#select-column-value-area>button`).filter(function(){return $(this).text()===colName;}).addClass("active");
             console.log(this);
             $(this).addClass("active");
         });
