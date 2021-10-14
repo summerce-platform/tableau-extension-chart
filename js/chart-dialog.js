@@ -93,25 +93,25 @@
         return sheetBtn;
     }
     function makeColBtn(colName) {
-        const btn1Click = (btn)=>{
-            $("#select-column-edge-area>button").removeClass("active");
-            console.log(btn);
-            $(btn).addClass("active");
-        };
-        const btn2Click = (btn)=>{
-            $("#select-column-value-area>button").removeClass("active");
-            console.log(btn);
-            $(btn).addClass("active");
-        };
-        const colBtn1 = $("<button onclick='btn1Click(this);'></button>");
-        const colBtn2 = $("<button onclick='btn2Click(this);'></button>");
+
+        const colBtn1 = $("<button></button>");
+        const colBtn2 = $("<button></button>");
         colBtn1.text(colName);
         colBtn1.addClass("btn btn-block btn-sm btn-arctic-blue");
         colBtn2.text(colName);
         colBtn2.addClass("btn btn-block btn-sm btn-arctic-outline-info");
         // sheetName을 그대로 부모에게 반환하며 종료하는 함수 연결
-
-        // colBtn1.on("click", () => {
+        $(document).on("click","btn btn-block btn-sm btn-arctic-blue",function(event){
+            console.log(this);
+            $("#select-column-edge-area>button").removeClass("active");
+            $(this).addClass("active");
+        });
+        $(document).on("click","btn btn-block btn-sm btn-arctic-outline-info",function(event){
+            console.log(this);
+            $("#select-column-value-area>button").removeClass("active");
+            $(this).addClass("active");
+        });
+        // colBtn1.on("click",this, () => {
         //     $("#select-column-edge-area>button").removeClass("active");
         //     // $(`#select-column-edge-area>button:contains(${colName})`).addClass("active");
         //     // $(`#select-column-edge-area>button`).filter(()=>{return $(this).text()===colName;}).addClass("active");
