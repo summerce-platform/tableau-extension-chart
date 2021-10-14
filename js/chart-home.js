@@ -136,9 +136,9 @@
             // 구매 카테가 5개 미만인 경우, 강제로 라벨을 확대시키고, 빈 카테 value는 0으로 처리
             console.log(labels,_seriesData);
             // labels 번역기
-            if(labels.includes("DIVERSITY")===true){
+            if(labels.includes("Diversity")===true){
                 labels = labels.map((val,idx,arr)=>{
-                    return val==="DIVERSITY"?"다양성":val==="RECENCY"?"최근성":val==="MATURITY"?"성숙도":val==="FREQ"?"활성도":val==="LOYALTY"?"충성도":val;
+                    return val.toUpperCase()==="DIVERSITY"?"다양성":val.toUpperCase()==="RECENCY"?"최근성":val.toUpperCase()==="MATURITY"?"성숙도":val.toUpperCase()==="FREQ"?"활성도":val.toUpperCase()==="LOYALTY"?"충성도":val;
                 })
             }
             
