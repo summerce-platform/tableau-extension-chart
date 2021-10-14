@@ -101,12 +101,12 @@
         colBtn2.text(colName);
         colBtn2.addClass("btn btn-block btn-sm btn-arctic-outline-info");
         // sheetName을 그대로 부모에게 반환하며 종료하는 함수 연결
-        $(document).on("click","btn btn-block btn-sm btn-arctic-blue",function(event){
+        $(document).on("click",".btn btn-block btn-sm btn-arctic-blue",function(event){
             console.log(this);
             $("#select-column-edge-area>button").removeClass("active");
             $(this).addClass("active");
         });
-        $(document).on("click","btn btn-block btn-sm btn-arctic-outline-info",function(event){
+        $(document).on("click",".btn btn-block btn-sm btn-arctic-outline-info",function(event){
             console.log(this);
             $("#select-column-value-area>button").removeClass("active");
             $(this).addClass("active");
