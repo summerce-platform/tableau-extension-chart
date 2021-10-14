@@ -105,7 +105,8 @@
         colBtn1.on("click",this, () => {
             $("#select-column-edge-area>button").removeClass("active");
             // $(`#select-column-edge-area>button:contains(${colName})`).addClass("active");
-            $(`#select-column-edge-area>button`).filter(()=>{ 
+            
+            $(`#select-column-edge-area>button`).filter(function(){ 
                 console.log(this); 
                 return $(this).text()===colName;}).addClass("active");
             console.log(this);
