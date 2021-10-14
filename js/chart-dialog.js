@@ -103,7 +103,7 @@
         colBtn1.on("click", () => {
             $("#select-column-edge-area>button").removeClass("active");
             // $(`#select-column-edge-area>button:contains(${colName})`).addClass("active");
-            $(`#select-column-edge-area>button)`).filter(()=>{return $(this).text()===colName;}).addClass("active");
+            $(`#select-column-edge-area>button`).filter(()=>{return $(this).text()===colName;}).addClass("active");
         });
         colBtn2.on("click", () => {
             $("#select-column-value-area>button").removeClass("active");
