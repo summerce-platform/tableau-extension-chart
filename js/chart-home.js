@@ -173,7 +173,7 @@
                     borderJoinStyle: 'round',
                 }]
             };
-            console.log(sMax);
+            // console.log(sMax);
             var config = {
                 type: 'radar',
                 data: mydata,
